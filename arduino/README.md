@@ -7,3 +7,4 @@ Project was created by Platformio. Process for creating the project:
 - Create project with platformio:
     - `platformio project init --board <board> --project-dir arduino`
     - To find the list of board names as recognized by platformio: `platformio boards arduino | grep <short board name>`
+- Run with `pio run --target upload`

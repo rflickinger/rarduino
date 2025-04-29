@@ -64,3 +64,6 @@ yarn-error.log
 Dockerfile.*
 docker-compose.*
 __docker_build__/
+
+# Secrets
+*secrets.yml
