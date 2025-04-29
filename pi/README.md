@@ -8,6 +8,9 @@ Hardware
 Apt Packages:
 - python3.XX (Unsure, waiting to find all libraries for compatibility)
 - pyserial
+- yq
+- postgresql
+- postgresql-contrib
 
 Python:
 - Set up a venv to isolate packages and python version (probably not even going to do this eventually, if this pans out it'll be podman or k8s): `python3 -m venv garduino`
