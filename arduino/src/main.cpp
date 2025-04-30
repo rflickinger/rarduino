@@ -1,12 +1,7 @@
 #include <Arduino.h>
+#include <String.h>
 #include "temp_sensor.h"
 #include "pump_motor.h"
-
-enum actions
-{
-    FAST_PUMP,
-    SLOW_PUMP
-};
 
 void setup()
 {
@@ -17,24 +12,26 @@ void setup()
 
 void loop()
 {
-    float value = readTempLevel();
-    Serial.println(value);
-    delay(1000);
+    // float value = readTempLevel();
+    // Serial.println(value);
+    // delay(1000);
 
     if (Serial.available())
     {
-        int command = Serial.read();
-        int arg = Serial.read();
+        String command = Serial.readStringUntil('\n');
+        int arg = (command.substring(8)).toInt();
+        command = command.substring(0, 8);
 
-        switch (command)
+        if (command.equals("fastpump"))
         {
-        case (FAST_PUMP):
             fastMove(arg);
-            break;
-        case (SLOW_PUMP):
+        }
+        else if (command.equals("slowpump"))
+        {
             slowMove(arg);
-            break;
-        default:
+        }
+        else
+        {
             Serial.println("ERROR: receieved " + command);
         }
     }
