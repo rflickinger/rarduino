@@ -9,13 +9,11 @@ const int MOTOR_IN4_PIN = 5;
 
 const int STEPS_PER_REVOLUTION = 2048;
 
-const int FAST_STEPS_PER_SECOND = 2048;
-const int SLOW_STEPS_PER_SECOND = 128;
+// No more than 640 on current power
+const int FAST_STEPS_PER_SECOND = 512;
+const int SLOW_STEPS_PER_SECOND = 256;
 
 const int ACCEL_STEPS_PER_SECOND_PER_SECOND = 512;
-
-const int FAST_STEPS = 2048;
-const int SLOW_STEPS = 2048;
 
 TinyStepper_28BYJ_48 pump;
 

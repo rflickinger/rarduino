@@ -12,9 +12,9 @@ void setup()
 
 void loop()
 {
-    // float value = readTempLevel();
-    // Serial.println(value);
-    // delay(1000);
+    float value = readTempLevel();
+    Serial.println("Temperature:" + String(value));
+    delay(5000);
 
     if (Serial.available())
     {
