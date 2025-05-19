@@ -2,8 +2,6 @@ from flask import Flask, jsonify, render_template
 from control import run_pump
 import json
 from routines import check_and_run_routines
-
-app = Flask(__name__)
  
 @app.route('/api/pump', methods=['POST'])
 def trigger_pump(pump_command_json):
