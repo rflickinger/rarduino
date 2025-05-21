@@ -8,9 +8,9 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
-Base = declarative_base()
+from app.database import db
 
-class Arduino(Base):
+class Arduino(db.Model):
     __tablename__ = 'arduinos'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
@@ -29,7 +29,7 @@ class Arduino(Base):
     ambient_temp_logs = relationship("AmbientTempLog", back_populates="arduino")
 
 
-class Plant(Base):
+class Plant(db.Model):
     __tablename__ = 'plants'
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
@@ -49,7 +49,7 @@ class Plant(Base):
 
 
 # Logs per plant
-class SoilTemperatureLog(Base):
+class SoilTemperatureLog(db.Model):
     __tablename__ = 'soil_temperature_logs'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -60,7 +60,7 @@ class SoilTemperatureLog(Base):
     plant = relationship("Plant", back_populates="soil_temp_logs")
 
 
-class SoilMoistureLog(Base):
+class SoilMoistureLog(db.Model):
     __tablename__ = 'soil_moisture_logs'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -71,7 +71,7 @@ class SoilMoistureLog(Base):
     plant = relationship("Plant", back_populates="soil_moisture_logs")
 
 
-class WateringLog(Base):
+class WateringLog(db.Model):
     __tablename__ = 'watering_logs'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -84,7 +84,7 @@ class WateringLog(Base):
 
 
 # Logs per arduino (environmental)
-class LightLog(Base):
+class LightLog(db.Model):
     __tablename__ = 'light_logs'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -95,7 +95,7 @@ class LightLog(Base):
     arduino = relationship("Arduino", back_populates="light_logs")
 
 
-class AirQualityLog(Base):
+class AirQualityLog(db.Model):
     __tablename__ = 'air_quality_logs'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -106,7 +106,7 @@ class AirQualityLog(Base):
     arduino = relationship("Arduino", back_populates="air_quality_logs")
 
 
-class AmbientTempLog(Base):
+class AmbientTempLog(db.Model):
     __tablename__ = 'ambient_temp_logs'
 
     id = Column(Integer, primary_key=True, autoincrement=True)

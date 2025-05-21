@@ -1,3 +1,4 @@
+from urllib.parse import quote_plus
 import yaml
 
 def load_db_credentials():
@@ -12,8 +13,10 @@ class Config:
     DB_PASSWORD = secrets['db_password']
     DB_NAME = secrets['db_name']
     DB_HOST = secrets.get('db_host', 'localhost')  # default to localhost
+    encoded_password = quote_plus(DB_PASSWORD)
+    encoded_user = quote_plus(DB_USER)
 
     SQLALCHEMY_DATABASE_URI = (
-        f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}'
+        f'postgresql://{encoded_user}:{encoded_password}@{DB_HOST}/{DB_NAME}'
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
